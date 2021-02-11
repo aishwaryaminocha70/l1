@@ -39,7 +39,7 @@ void setupgc() {
 	
 	
 	// this below cannot be an int, find another option and fix
-	examplegcp.program = 11;
+	examplegcp.program = "0x11";
 	examplegcp.message = "Hello Infinite Loop";
 }
 
