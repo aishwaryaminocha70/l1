@@ -25,8 +25,8 @@ struct gift_card_program examplegcp;
 void setupgc() {
 	examplegc.num_bytes = 240;
 	examplegc.gift_card_data = (void *) &examplegcd;
-	examplegcd.merchant_id = "GiftCardz.com                   ";
-	examplegcd.customer_id = "DuaneGreenes Store 1451         ";
+	examplegcd.merchant_id = "Infinite8.com                   ";
+	examplegcd.customer_id = "DuaneGreenes Infin ite8         ";
 	examplegcd.number_of_gift_card_records = 1;
 
 	/* JAC: Something seems fishy... */
@@ -34,7 +34,7 @@ void setupgc() {
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[0] = (void *) &examplegcrd;
 	examplegcrd.record_size_in_bytes = 44;
-	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
+	examplegcrd.type_of_record = 3; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
 	examplegcp.message = "Hello Infinite Loop";
 	
