@@ -48,12 +48,6 @@ void setupgc() {
 	examplegcp.program = &uc;
 	
 	
-	
-	
-	
-	
-	/* JAC: Something seems fishy... */
-	examplegcd.gift_card_record_data = malloc(examplegcd.number_of_gift_card_records);
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[1] = (void *) &examplegcrd2;
 	examplegcrd2.record_size_in_bytes = 44;
