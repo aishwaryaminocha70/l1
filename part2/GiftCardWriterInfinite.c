@@ -40,7 +40,7 @@ void setupgc() {
 	
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
-	unsigned char uc = 11
+	unsigned char uc = 11;
 	examplegcp.program = uc;
 	examplegcp.message = "Hello Infinite Loop";
 }
