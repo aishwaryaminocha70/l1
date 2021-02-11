@@ -36,6 +36,9 @@ void setupgc() {
 	examplegcrd.record_size_in_bytes = 44;
 	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
+	
+	
+	// this below cannot be an int, find another option and fix
 	examplegcp.program = 11;
 	examplegcp.message = "Hello Infinite Loop";
 }
@@ -48,7 +51,7 @@ void setupgc() {
 void writegc() {
 	FILE *fd1;
 	// JAC: Why don't any of these check for error return codes?!?
-	fd1 = fopen("examplefile.gft","w");
+	fd1 = fopen("infinite.gft","w");
 	fwrite(&examplegc.num_bytes,4,1,fd1);
 	fwrite(examplegcd.merchant_id,32,1,fd1);
 	fwrite(examplegcd.customer_id,32,1,fd1);
