@@ -36,13 +36,12 @@ void setupgc() {
 	examplegcrd.record_size_in_bytes = 44;
 	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
-	
+	examplegcp.message = "Hello Infinite Loop";
 	
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
 	unsigned char uc = 11;
 	examplegcp.program = &uc;
-	examplegcp.message = "Hello Infinite Loop";
 }
 
 
@@ -60,8 +59,10 @@ void writegc() {
 	fwrite(&examplegcd.number_of_gift_card_records,4,1,fd1);
 	fwrite(&examplegcrd.record_size_in_bytes,4,1,fd1);
 	fwrite(&examplegcrd.type_of_record,4,1,fd1);
-	fwrite(examplegcp.program,128,1,fd1);
+	
 	fwrite(examplegcp.message,32,1,fd1);
+	fwrite(examplegcp.program,128,1,fd1);
+	// fwrite(examplegcp.message,32,1,fd1);
 	fclose(fd1);
 }
 
