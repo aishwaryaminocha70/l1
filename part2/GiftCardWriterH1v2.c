@@ -44,7 +44,7 @@ void setupgc() {
 	examplegcp.message = "Hello HangOne";
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
-	unsigned char uc = 73;
+	unsigned char uc = 7;
 	examplegcp.program = &uc;
 	
 	
@@ -56,7 +56,7 @@ void setupgc() {
 	examplegcp2.message = "Hello Hang1";
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
-	unsigned char uc2 = 73;
+	unsigned char uc2 = 7;
 	examplegcp2.program = &uc2;	
 }
 
@@ -68,7 +68,7 @@ void setupgc() {
 void writegc() {
 	FILE *fd1;
 	// JAC: Why don't any of these check for error return codes?!?
-	fd1 = fopen("h2.gft","w");
+	fd1 = fopen("h3.gft","w");
 	fwrite(&examplegc.num_bytes,4,1,fd1);
 	fwrite(examplegcd.merchant_id,32,1,fd1);
 	fwrite(examplegcd.customer_id,32,1,fd1);
