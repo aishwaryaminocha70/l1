@@ -27,31 +27,31 @@ struct gift_card_record_data examplegcrd2;
 //  (JAC: This is so wrong.  Global variable use / initialization is a 
 //  terrible thing to do.)
 void setupgc() {
-	examplegc.num_bytes = 276;
+	examplegc.num_bytes = 4;
 	examplegc.gift_card_data = (void *) &examplegcd;
 	
 	examplegcd.merchant_id = "HangHang1.com                   ";
 	examplegcd.customer_id = "DuaneGreenes HangH ang1         ";
-	examplegcd.number_of_gift_card_records = 2;
+	examplegcd.number_of_gift_card_records = 0;
 
 	/* JAC: Something seems fishy... */
 	examplegcd.gift_card_record_data = malloc(examplegcd.number_of_gift_card_records);
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[0] = (void *) &examplegcrd;
-	examplegcrd.record_size_in_bytes = 44;
+	examplegcrd.record_size_in_bytes = 4;
 	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
 	examplegcp.message = "Hello HangOne";
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
-	unsigned char uc = 7;
+	unsigned char uc = 3;
 	examplegcp.program = &uc;
 	
 	
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[1] = (void *) &examplegcrd2;
-	examplegcrd2.record_size_in_bytes = 44;
-	examplegcrd2.type_of_record = 1; // JAC: Should be enum!  amount_change
+	examplegcrd2.record_size_in_bytes = 4;
+	examplegcrd2.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd2.actual_record = (void *) &examplegcac;
 	examplegcac.amount_added = 2000;
 	examplegcac.actual_signature = "[ insert crypto signature here ]";
@@ -65,7 +65,7 @@ void setupgc() {
 void writegc() {
 	FILE *fd1;
 	// JAC: Why don't any of these check for error return codes?!?
-	fd1 = fopen("crash2mix.gft","w");
+	fd1 = fopen("crash2mixnob.gft","w");
 	fwrite(&examplegc.num_bytes,4,1,fd1);
 	fwrite(examplegcd.merchant_id,32,1,fd1);
 	fwrite(examplegcd.customer_id,32,1,fd1);
