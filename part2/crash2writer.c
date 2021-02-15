@@ -42,7 +42,7 @@ void setupgc() {
 	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
 	examplegcp.message = "This is crash one for the testing - say hello";
-	unsigned char uc = 9;
+	unsigned char uc = 7;
 	examplegcp.program = &uc;
 	
 	
@@ -53,8 +53,7 @@ void setupgc() {
 	examplegcrd2.actual_record = (void *) &examplegcp2;
 	examplegcp2.message = "Hello Hang1";
 	// this below cannot be an int, find another option and fix
-	// examplegcp.program = '11';
-	unsigned char uc2 = 9;
+	unsigned char uc2 = 7;
 	examplegcp2.program = &uc2;		
 	
 	
