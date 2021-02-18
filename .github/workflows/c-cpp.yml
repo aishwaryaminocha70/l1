@@ -13,10 +13,10 @@ jobs:
     - uses: actions/checkout@v2
       
     - name: make Makefile
-      run: make Makefile
+      run: make part2/Makefile
       
     - name: test infinite loop hang gift card
-      run: gcc giftcardreader2.c -o  giftcardreader && ./giftcardreader 1 hang.gft
+      run: gcc part2/giftcardreader2.c -o  giftcardreader && ./giftcardreader 1 part2/hang.gft
       
       
       
