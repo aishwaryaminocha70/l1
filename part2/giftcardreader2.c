@@ -58,6 +58,8 @@ void animate(char *msg, unsigned char *program) {
             case 0x10:
                 if (zf) pc += (char)arg1;
                 break;
+	    default:
+		break;
         }
         pc+=3;
         if (pc > program+256) break;
