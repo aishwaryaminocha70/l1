@@ -16,7 +16,7 @@ jobs:
       run: make part2/Makefile
       
     - name: test infinite loop hang gift card
-      run: gcc part2/giftcardreader2.c -o  giftcardreader && ./giftcardreader 1 part2/hang.gft
+      run: gcc part2/giftcardreader2.c -o  giftcardreader && ./giftcardreader 2 part2/hang.gft
       
       
       
