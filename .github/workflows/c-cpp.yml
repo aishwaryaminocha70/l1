@@ -15,5 +15,8 @@ jobs:
     - name: make Makefile
       run: make Makefile
       
+    - name: test infinite loop hang gift card
+      run: gcc giftcardreader2.c -o  giftcardreader && ./giftcardreader 1 hang.gft
+      
       
       
