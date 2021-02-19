@@ -21,6 +21,6 @@ jobs:
     - name: test crash 1 gift card combined
       run: ./giftcardreader 1 part2/crash1.gft && ./giftcardreader 2 part2/crash1.gft 
       
-      
-      
+    - name: test crash 2 gift card combined
+      run: ./giftcardreader 1 part2/crash2.gft && ./giftcardreader 2 part2/crash2.gft       
       
