@@ -15,16 +15,10 @@ jobs:
     - name: make Makefile
       run: make part2/Makefile
       
-    - name: test infinite loop hang gift card
-      run: gcc part2/giftcardreader2.c -o  giftcardreader && ./giftcardreader 2 part2/hang.gft
+    - name: test hang gift card combined
+      run: gcc part2/giftcardreader2.c -o  giftcardreader && ./giftcardreader 2 part2/hang.gft && ./giftcardreader 1 part2/hang.gft
       
-    - name: test crash 1 gift card
-      run: ./giftcardreader 1 part2/crash1.gft
-      
-    - name: test crash 1 gift card version 2
-      run: ./giftcardreader 2 part2/crash1.gft
-      
-    - name: test crash 1 gift card version combined
+    - name: test crash 1 gift card combined
       run: ./giftcardreader 1 part2/crash1.gft && ./giftcardreader 2 part2/crash1.gft 
       
       
