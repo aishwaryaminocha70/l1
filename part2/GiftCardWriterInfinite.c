@@ -7,6 +7,8 @@
  */
 
 #include <stdio.h>
+#include <math.h> 
+#include <limits.h> 
 #include "giftcard.h"
 
 /* JAC: Why is this included? */
@@ -23,24 +25,28 @@ struct gift_card_program examplegcp;
 //  (JAC: This is so wrong.  Global variable use / initialization is a 
 //  terrible thing to do.)
 void setupgc() {
-	examplegc.num_bytes = 240;
+	examplegc.num_bytes = 244;
 	examplegc.gift_card_data = (void *) &examplegcd;
 	examplegcd.merchant_id = "Infinite8.com                   ";
 	examplegcd.customer_id = "DuaneGreenes Infin ite8         ";
-	examplegcd.number_of_gift_card_records = 1;
+	//float totalrec = 1.0/0.0;
+	//float totalrec = NAN;
+	//int x = INT_MAX;
+	//examplegcd.number_of_gift_card_records = NAN;
+	examplegcd.number_of_gift_card_records = INFINITY;
 
 	/* JAC: Something seems fishy... */
-	examplegcd.gift_card_record_data = malloc(examplegcd.number_of_gift_card_records);
+	examplegcd.gift_card_record_data = malloc(1);
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[0] = (void *) &examplegcrd;
 	examplegcrd.record_size_in_bytes = 44;
-	examplegcrd.type_of_record = 3; // JAC: Should be enum!  amount_change
+	examplegcrd.type_of_record = 2; // JAC: Should be enum!  amount_change
 	examplegcrd.actual_record = (void *) &examplegcp;
 	examplegcp.message = "Hello Infinite Loop";
 	
 	// this below cannot be an int, find another option and fix
 	// examplegcp.program = '11';
-	unsigned char uc = 73;
+	unsigned char uc = 7;
 	examplegcp.program = &uc;
 }
 
@@ -52,11 +58,11 @@ void setupgc() {
 void writegc() {
 	FILE *fd1;
 	// JAC: Why don't any of these check for error return codes?!?
-	fd1 = fopen("infinite.gft","w");
+	fd1 = fopen("infiniteMaybe.gft","w");
 	fwrite(&examplegc.num_bytes,4,1,fd1);
 	fwrite(examplegcd.merchant_id,32,1,fd1);
 	fwrite(examplegcd.customer_id,32,1,fd1);
-	fwrite(&examplegcd.number_of_gift_card_records,4,1,fd1);
+	fwrite(&examplegcd.number_of_gift_card_records,8,1,fd1);
 	fwrite(&examplegcrd.record_size_in_bytes,4,1,fd1);
 	fwrite(&examplegcrd.type_of_record,4,1,fd1);
 	
