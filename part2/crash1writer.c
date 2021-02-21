@@ -15,7 +15,12 @@
 struct this_gift_card examplegc;
 struct gift_card_data examplegcd;
 struct gift_card_record_data examplegcrd;
-struct gift_card_amount_change examplegcac;
+// struct gift_card_amount_change examplegcac;
+struct gift_card_program examplegcp;
+
+struct gift_card_record_data examplegcrd2;
+//struct gift_card_amount_change examplegcac2;
+struct gift_card_program examplegcp2;
 
 
 // Break it up so that we don't have long functions!  Good programming style!
@@ -24,19 +29,35 @@ struct gift_card_amount_change examplegcac;
 void setupgc() {
 	examplegc.num_bytes = -1;
 	examplegc.gift_card_data = (void *) &examplegcd;
-	examplegcd.merchant_id = "GiftCardz.com                   ";
-	examplegcd.customer_id = "DuaneGreenes Store 1451         ";
-	examplegcd.number_of_gift_card_records = 1;
+	examplegcd.merchant_id = "CCCCCCCC1.com                   ";
+	examplegcd.customer_id = "DuaneGreenes Cncin cte9         ";
+	//examplegcd.number_of_gift_card_records = 777 and type 2 record try
+	examplegcd.number_of_gift_card_records = 2;
 
 	/* JAC: Something seems fishy... */
-	examplegcd.gift_card_record_data = malloc(1);
+	examplegcd.gift_card_record_data = malloc(examplegcd.number_of_gift_card_records);
 	/* JAC: here too! */
 	examplegcd.gift_card_record_data[0] = (void *) &examplegcrd;
 	examplegcrd.record_size_in_bytes = 44;
-	examplegcrd.type_of_record = 1; // JAC: Should be enum!  amount_change
-	examplegcrd.actual_record = (void *) &examplegcac;
-	examplegcac.amount_added = 2000;
-	examplegcac.actual_signature = "[ insert crypto signature here ]";
+	examplegcrd.type_of_record = 3; // JAC: Should be enum!  amount_change
+	examplegcrd.actual_record = (void *) &examplegcp;
+	examplegcp.message = "This is crash one for the testing - say hello";
+	unsigned char uc = 9;
+	examplegcp.program = &uc;
+
+
+
+	examplegcd.gift_card_record_data[1] = (void *) &examplegcrd2;
+	examplegcrd2.record_size_in_bytes = 6666;
+	examplegcrd2.type_of_record = 3; // JAC: Should be enum!  amount_change
+	examplegcrd2.actual_record = (void *) &examplegcp2;
+	examplegcp2.message = "Hello Hang1";
+	// this below cannot be an int, find another option and fix
+	// examplegcp.program = '11';
+	unsigned char uc2 = 9;
+	examplegcp2.program = &uc2;		
+
+
 }
 
 
@@ -47,15 +68,24 @@ void setupgc() {
 void writegc() {
 	FILE *fd1;
 	// JAC: Why don't any of these check for error return codes?!?
-	fd1 = fopen("c1.gft","w");
+	fd1 = fopen("crash1.gft","w");
 	fwrite(&examplegc.num_bytes,4,1,fd1);
 	fwrite(examplegcd.merchant_id,32,1,fd1);
 	fwrite(examplegcd.customer_id,32,1,fd1);
 	fwrite(&examplegcd.number_of_gift_card_records,4,1,fd1);
+
+
 	fwrite(&examplegcrd.record_size_in_bytes,4,1,fd1);
 	fwrite(&examplegcrd.type_of_record,4,1,fd1);
-	fwrite(&examplegcac.amount_added,4,1,fd1);
-	fwrite(examplegcac.actual_signature,32,1,fd1);
+	fwrite(examplegcp.message,32,1,fd1);
+	fwrite(examplegcp.program,256,1,fd1);
+	// fwrite(examplegcp.message,32,1,fd1);
+
+	fwrite(&examplegcrd2.record_size_in_bytes,4,1,fd1);
+	fwrite(&examplegcrd2.type_of_record,4,1,fd1);
+	fwrite(examplegcp2.message,32,1,fd1);
+	fwrite(examplegcp2.program,256,1,fd1);
+
 	fclose(fd1);
 }
 
