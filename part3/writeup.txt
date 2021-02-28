@@ -2,8 +2,6 @@ Upon running code coverage tool on the compiled giftcard reader and test files f
     Lines executed:71.43% of 175
     Branches executed:87.88% of 66
     Taken at least once:59.09% of 66
-    No calls
-    nr.c:creating 'nr.c.gcov'
 
 The portions of the program that are not covered were detailed; 2 lines of code were picked and test files were created for each line of code to be covered.
 The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each test file are detailed below: 
