@@ -1,4 +1,4 @@
-Upon running code coverage tool on the compiled giftcard reader and test files from part2 (crash1.gft and crash2.gft) - the results are below:
+Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft) - the results are below:
     Lines executed:71.43% of 175
     Branches executed:87.88% of 66
     Taken at least once:59.09% of 66
@@ -16,3 +16,7 @@ The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each
         The difference here is that the program for the THX-1138 assembly interpreter is 0x10 and not 0x09. 
         This difference causes the program to run the block of code that starts at line 62 of "giftcardreader2.c" from folder "part2".
         This line of code at line 62 starts with: if (zf) pc += (char)arg1;
+Upon running code coverage tool on the compiled giftcard reader and test files from part3 folder (cov1.gft and cov2.gft) - the results are below:
+    Lines executed:84.57% of 175
+    Branches executed:96.97% of 66
+    Taken at least once:71.21% of 66
