@@ -1,0 +1,18 @@
+Upon running code coverage tool on the compiled giftcard reader and test files from part2 (crash1.gft and crash2.gft) - the results are below:
+    Lines executed:71.43% of 175
+    Branches executed:87.88% of 66
+    Taken at least once:59.09% of 66
+    No calls
+    nr.c:creating 'nr.c.gcov'
+
+The portions of the program that are not covered were detailed; 2 lines of code were picked and test files were created for each line of code to be covered.
+The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each test file are detailed below: 
+    cov1.gft: 
+        This test file giftcard has a record of type "1" because "crash1.gft" & "crash2.gft" were both giftcards with records of type "2" and type "3".
+        This change causes the program to run the block of code that starts at line 246 of "giftcardreader2.c" from folder "part2".
+        The block of code at line 246 starts with: if (gcrd_ptr->type_of_record == 1) {...};
+    cov2.gft:
+        This is a test file giftcard with record of type "3" and this is similar to crash2.gft but there is an important difference.
+        The difference here is that the program for the THX-1138 assembly interpreter is 0x10 and not 0x09. 
+        This difference causes the program to run the block of code that starts at line 62 of "giftcardreader2.c" from folder "part2".
+        This line of code at line 62 starts with: if (zf) pc += (char)arg1;
