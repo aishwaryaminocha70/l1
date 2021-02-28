@@ -53,6 +53,8 @@ void animate(char *msg, unsigned char *program) {
             case 0x08:
                 goto done;
             case 0x09:
+		checker = (char)arg1;
+		if (checker<0) break;
                 pc += (char)arg1;
                 break;
             case 0x10:
