@@ -21,6 +21,7 @@ void animate(char *msg, unsigned char *program) {
     int zf = 0;
     while (1) {
         unsigned char op, arg1, arg2;
+	char checker;
         op = *pc;
         arg1 = *(pc+1);
         arg2 = *(pc+2);
