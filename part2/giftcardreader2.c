@@ -185,7 +185,9 @@ struct this_gift_card *gift_card_reader(FILE *input_fd) {
     void *optr;
 	void *ptr;
 // 	int bytechecker;
-
+	char checkval;
+	char *checkptr;
+	
 	// Loop to do the whole file
 	while (!feof(input_fd)) {
 
@@ -255,6 +257,9 @@ struct this_gift_card *gift_card_reader(FILE *input_fd) {
 			// message
 			if (gcrd_ptr->type_of_record == 2) {
 				gcrd_ptr->actual_record = ptr;
+				checkptr = ptr+32;
+				checkval = *((char *)checkptr);
+				if (checkval != '\0') break;
 				// advance by the string size + 1 for nul
                 // BDG: does not seem right
 				ptr=ptr+strlen((char *)gcrd_ptr->actual_record)+1;
