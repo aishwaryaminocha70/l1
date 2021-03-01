@@ -8,7 +8,7 @@ crash1.gft:
   Here, the structure pointer, ret_val->num_bytes, stores a negative value, specifically (-1).
   This error causes an seg fault crash because malloc(-1) is not possible.
 crash1.gft fix:
-  Here, we fix the original giftcard reader to check the what the value is stored in the structure pointer for num_bytes (i.e., ret_val->num_bytes).
+  Here, we fix the original giftcard reader to check the value stored in the structure pointer for num_bytes (i.e., ret_val->num_bytes).
   The updated giftcard reader (named "giftcardreader2.c" in part2 folder) will check the value stored in: ret_val->num_bytes.
   If the value stored is a negative value, then "giftcardreader2.c" will replace the negative value with 0 to prevent a seg fault crash from occuring.
   
