@@ -1,1 +1,45 @@
+The details below are for three giftcard test files: crash1.gft, crash2.gft, and hang.gft, respectively.
 
+
+crash1.gft:
+  This giftcard test file is simple but triggers a seg fault crash on malloc() that is located on line 189 of the original "giftcardreader.c" file.
+  The type of giftcard record stored in crash1.gft is of type 3, but the program crashes before animate() is called.
+  Line 189 in the unedited giftcard reader is: ptr = malloc(ret_val->num_bytes);
+  Here, the structure pointer, ret_val->num_bytes, stores a negative value, specifically (-1).
+  This error causes an seg fault crash because malloc(-1) is not possible.
+crash1.gft fix:
+  Here, we fix the original giftcard reader to check the what the value is stored in the structure pointer for num_bytes (i.e., ret_val->num_bytes).
+  The updated giftcard reader (named "giftcardreader2.c" in part2 folder) will check the value stored in: ret_val->num_bytes.
+  If the value stored is a negative value, then "giftcardreader2.c" will replace the negative value with 0 to prevent a seg fault crash from occuring.
+  
+  
+crash2.gft:
+  This giftcard test file triggers a seg fault crash that started on line 237 of the original "giftcardreader.c" file.
+  The type of giftcard record stored in crash2.gft is of type 2, but animate() is never called.
+  Line 237 starts with: if (gcrd_ptr->type_of_record == 2) {...}
+  Here, the message string in the giftcard program structure is not null-terminated. strlen() will keep searching until a null byte is found.
+  Line 237 is also within a for loop that has an off by one error:
+    The for loop's terminaing condition is: i<=gcd_ptr->number_of_gift_card_records
+    This is an error, because the variable "i" started at 0, this should be "<" and not "<=" in the for loop.
+    On the extra loop, this also causes an error with accessing an unavailable index in the array, starting at line 210.
+    Line 210 starts with: gcrd_ptr = gcd_ptr->gift_card_record_data[i] = malloc(sizeof(struct gift_card_record_data));
+crash2.gft fix:
+  Here, we fix the original giftcard reader to check the end of the message and make sure that it is a null-terminated byte string.
+  The updated giftcard reader (named "giftcardreader2.c" in part2 folder) will check the last byte of the message, since we know the message is 32 bytes.
+  
+  
+hang.gft:
+  This giftcard test file triggers an infinite loop that started on line 55 of the original "giftcardreader.c" file.
+  The type of giftcard record stored in hang.gft is of type 3, and animate() is called to trigger an infinite loop.
+  Line 55 starts with: case 0x09: 
+  This infinite loop error relies on line 56: pc += (char)arg1;
+  Here, the value stored in "arg1" is -3, so the program counter "pc" will jump backwards by 3 position.
+  By jumping backwards by 3 positions, we cancel out the program from moving forward in line 62: pc+=3;
+  Because -3 and 3 cancels out (i.e., sum to 0) the program never moves anywhere.
+  And line 63 is never triggered: if (pc > program+256) break;
+  Since line 63 is never triggered, the program will never break out of the while(1) loop that it is in from line 22 of the original giftcard reader.
+hang.gft fix:
+  Here, we fix the original giftcard by checking the value in "arg1" to make sure it is not a negative number.
+  The updated giftcard reader (named "giftcardreader2.c" in part2 folder) will prevent the program counter from jumping backwards into an infinite loop.
+  
+  
