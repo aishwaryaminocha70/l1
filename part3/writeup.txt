@@ -1,3 +1,5 @@
+Note that github actions on main directory has been updated to test/run the giftcard files mentioned below in this directory, part3.
+
 Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft) - the results are below:
     Lines executed:71.43% of 175
     Branches executed:87.88% of 66
@@ -18,3 +20,11 @@ Upon running code coverage tool on the compiled giftcard reader and test files f
     Lines executed:84.57% of 175
     Branches executed:96.97% of 66
     Taken at least once:71.21% of 66
+
+The additional giftcards are titled fuzzer1.gft and fuzzer2.gft; the specifics of each test file are detailed below: 
+    fuzzer1.gft:
+        This test file giftcard has a record of type "2" and does not allocate enough memory, only 116 bytes is allocated.
+    fuzzer2.gft:
+        This test file giftcard has a record of type "2" and does not allocate enough memory, but states 76 giftcard records when there is only 1. 
+        This test file giftcard also calls animate() by specifying type "3" record when it has only 1 record of type "2". 
+The "giftcardreader3.c" file in part3 folder has been updated to check that if a giftcard record is of type "2" then it must have atleast 32+256 bytes;      
