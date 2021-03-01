@@ -32,7 +32,7 @@ void setupgc() {
 // 	examplegc.num_bytes = 664;
 // 	examplegc.num_bytes = 2,147,483,647;
 
-	examplegc.num_bytes = 116;
+	examplegc.num_bytes = 368;
 
 	examplegc.gift_card_data = (void *) &examplegcd;
 	examplegcd.merchant_id = "Infinite8.com                   ";
