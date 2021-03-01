@@ -225,7 +225,7 @@ struct this_gift_card *gift_card_reader(FILE *input_fd) {
 		gcd_ptr->gift_card_record_data = (void *)malloc(gcd_ptr->number_of_gift_card_records*sizeof(void*));
 
 		// Now ptr points at the gift card recrod data
-		for (int i=0; i<=gcd_ptr->number_of_gift_card_records; i++){
+		for (int i=0; i<gcd_ptr->number_of_gift_card_records; i++){
 			//printf("i: %d\n",i);
 			struct gift_card_record_data *gcrd_ptr;
 			gcrd_ptr = gcd_ptr->gift_card_record_data[i] = malloc(sizeof(struct gift_card_record_data));
