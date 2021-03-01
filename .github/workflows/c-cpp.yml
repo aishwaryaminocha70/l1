@@ -24,3 +24,11 @@ jobs:
     - name: test crash 2 gift card combined
       run: ./giftcardreader 1 part2/crash2.gft && ./giftcardreader 2 part2/crash2.gft       
       
+    - name: test cov1 gift card combined
+      run: gcc part3/giftcardreader3.c -o  giftcardreader3 && ./giftcardreader3 2 part3/cov1.gft && ./giftcardreader3 1 part3/cov1.gft
+      
+    - name: test cov2 gift card combined
+      run: ./giftcardreader3 1 part3/cov2.gft && ./giftcardreader3 2 part3/cov2.gft 
+      
+    - name: test fuzzer gift card combined
+      run: ./giftcardreader3 1 part3/fuzzer1.gft && ./giftcardreader3 2 part3/fuzzer2.gft 
