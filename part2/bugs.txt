@@ -33,7 +33,7 @@ hang.gft:
   The type of giftcard record stored in hang.gft is of type 3, and animate() is called to trigger an infinite loop.
   Line 55 starts with: case 0x09: 
   This infinite loop error relies on line 56: pc += (char)arg1;
-  Here, the value stored in "arg1" is -3, so the program counter "pc" will jump backwards by 3 position.
+  Here, the value stored in "arg1" is -3, so the program counter "pc" will jump backwards by 3 positions to the back.
   By jumping backwards by 3 positions, we cancel out the program from moving forward in line 62: pc+=3;
   Because -3 and 3 cancels out (i.e., sum to 0) the program never moves anywhere.
   And line 63 is never triggered: if (pc > program+256) break;
