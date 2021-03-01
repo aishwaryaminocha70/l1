@@ -1,5 +1,5 @@
 The details below are for three giftcard test files: crash1.gft, crash2.gft, and hang.gft, respectively.
-Note that github actions on main directory has been updated to the giftcard files mentioned above.
+Note that github actions on main directory has been updated to test/run the giftcard files mentioned above.
 
 crash1.gft:
   This giftcard test file is simple but triggers a seg fault crash on malloc() that is located on line 189 of the original "giftcardreader.c" file.
