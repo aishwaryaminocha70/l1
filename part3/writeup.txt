@@ -61,3 +61,6 @@ The "giftcardreader3.c" file in part3 folder has been updated to check that if a
 
 Please note: the "giftcardreader3.c" file in part3 folder has been updated again to check the returns of malloc with user provided inputs (giftcard file fields)
 So lines 210 and 230 of "giftcardreader3.c" will check the return of malloc.
+
+For the question (from grade feedback) about the number "32" and checking that the message is a null-terminated byte string:
+    We know this "message" field is 32 bytes because of line # 95 in the given "giftcard.h" file.
