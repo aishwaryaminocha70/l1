@@ -207,6 +207,9 @@ struct this_gift_card *gift_card_reader(FILE *input_fd) {
 
 		// Make something the size of the rest and read it in
 		ptr = malloc(ret_val->num_bytes);
+		if (ptr == NULL) {
+			return ret_val;
+		}
 		
 // 		printf("number of bytes3: %d\n",ret_val->num_bytes);
 		fread(ptr, ret_val->num_bytes, 1, input_fd);
@@ -224,6 +227,9 @@ struct this_gift_card *gift_card_reader(FILE *input_fd) {
 		ptr += 4;
 
 		gcd_ptr->gift_card_record_data = (void *)malloc(gcd_ptr->number_of_gift_card_records*sizeof(void*));
+		if (gcd_ptr->gift_card_record_data == NULL) {
+			return ret_val;
+		}
 
 		// Now ptr points at the gift card recrod data
 		for (int i=0; i<gcd_ptr->number_of_gift_card_records; i++){
