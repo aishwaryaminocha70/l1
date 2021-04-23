@@ -26,6 +26,7 @@ crash2.gft:
 crash2.gft fix:
   Here, we fix the original giftcard reader to check the end of the message and make sure that it is a null-terminated byte string.
   The updated giftcard reader (named "giftcardreader2.c" in part2 folder) will check the last byte of the message, since we know the message is 32 bytes.
+  We know this because the message field in a giftcard file structure is defined to be 32 bytes, and we need to make sure that it is a null-terminated byte string.
   
   
 hang.gft:
