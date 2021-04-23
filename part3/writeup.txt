@@ -7,12 +7,10 @@ We have our program (gcreader) created, in addition with this file titled: "gcre
 
 Next, test files titled: crash1.gft and crash2.gft, were ran with the program:
 -> ./gcreader 1 crash1.gft
--> ./gcreader 2 crash1.gft
--> ./gcreader 1 crash2.gft
 -> ./gcreader 2 crash2.gft
 After running these commands above for our program (gcreader), this file was also created: "gcreader.gcda"
 
-Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft) - 
+Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft): 
 -> gcov -b -c gcreader.c
 The results from running this command above are below:
     Lines executed:71.43% of 175
@@ -23,7 +21,11 @@ If needed, details can be seen with this command:
 -> cat gcreader.c.gcov
 
 The portions of the program that are not covered were detailed; 2 lines of code were picked and test files were created for each line of code to be covered.
-The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each test file are detailed below: 
+The additional giftcards are titled cov1.gft and cov2.gft.
+We run gcreader with these new giftcard files:
+-> ./gcreader 1 cov1.gft
+-> ./gcreader 2 cov2.gft
+The specifics of each test file are detailed below: 
     cov1.gft: 
         This test file giftcard has a record of type "1" because "crash1.gft" & "crash2.gft" were both giftcards with records of type "2" and type "3".
         This change causes the program to run the block of code that starts at line 246 of "giftcardreader2.c" from folder "part2".
@@ -33,10 +35,21 @@ The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each
         The difference here is that the program for the THX-1138 assembly interpreter is 0x10 and not 0x09. 
         This difference causes the program to run the block of code that starts at line 62 of "giftcardreader2.c" from folder "part2".
         This line of code at line 62 starts with: if (zf) pc += (char)arg1;
-Upon running code coverage tool on the compiled giftcard reader and test files from part3 folder (cov1.gft and cov2.gft) - the results are below:
+Upon running code coverage tool on the compiled giftcard reader and test files from part3 folder (cov1.gft and cov2.gft):
+-> gcov -b -c gcreader.c
+The results are below:
     Lines executed:84.57% of 175
     Branches executed:96.97% of 66
     Taken at least once:71.21% of 66
+    gcreader.c:creating 'gcreader.c.gcov'
+
+Lastly, we will run afl-fuzzer.
+Please note that afl_in is the directory where all the test files created for giftcards are. This includes all the test giftcards from part 2 and part 3.
+Please note that afl_out is the directory where the output files will be after running afl-fuzzer.
+
+To run afl-fuzzer, we enter this command in terminal:
+-> ./afl-fuzz -i afl_in -o afl_out ./gcreader 1 @@
+The results below (fuzzer1.gft and fuzzer2.gft) were created after running afl-fuzzer for 2 hours nonstop.
 
 The additional giftcards are titled fuzzer1.gft and fuzzer2.gft; the specifics of each test file are detailed below: 
     fuzzer1.gft:
