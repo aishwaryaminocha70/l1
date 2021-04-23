@@ -58,3 +58,6 @@ The additional giftcards are titled fuzzer1.gft and fuzzer2.gft; the specifics o
         This test file giftcard has a record of type "2" and does not allocate enough memory, but states 76 giftcard records when there is only 1. 
         This test file giftcard also calls animate() by specifying type "3" record when it has only 1 record of type "2". 
 The "giftcardreader3.c" file in part3 folder has been updated to check that if a giftcard record is of type "2" then it must have atleast 32+256 bytes;      
+
+Please note: the "giftcardreader3.c" file in part3 folder has been updated again to check the returns of malloc with user provided inputs (giftcard file fields)
+So lines 210 and 230 of "giftcardreader3.c" will check the return of malloc.
