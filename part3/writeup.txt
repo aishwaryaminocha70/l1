@@ -1,10 +1,26 @@
 Note that github actions on main directory has been updated to test/run the giftcard files mentioned below in this directory, part3.
     Github actions might have reached monthly limit.
-    
-Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft) - the results are below:
+ 
+First, the program was compiled with coverage in terminal with these flags/options:
+-> gcc -fprofile-arcs -ftest-coverage -o gcreader gcreader.c
+We have our program (gcreader) created, in addition with this file titled: "gcreader.gcno"
+
+Next, test files titled: crash1.gft and crash2.gft, were ran with the program:
+-> ./gcreader 1 crash1.gft
+-> ./gcreader 2 crash1.gft
+-> ./gcreader 1 crash2.gft
+-> ./gcreader 2 crash2.gft
+After running these commands above for our program (gcreader), this file was also created: "gcreader.gcda"
+
+Upon running code coverage tool on the compiled giftcard reader and test files from part2 folder (crash1.gft and crash2.gft) - 
+-> gcov -b -c gcreader.c
+The results from running this command above are below:
     Lines executed:71.43% of 175
     Branches executed:87.88% of 66
     Taken at least once:59.09% of 66
+    gcreader.c:creating 'gcreader.c.gcov'
+If needed, details can be seen with this command:
+-> cat gcreader.c.gcov
 
 The portions of the program that are not covered were detailed; 2 lines of code were picked and test files were created for each line of code to be covered.
 The additional giftcards are titled cov1.gft and cov2.gft; the specifics of each test file are detailed below: 
